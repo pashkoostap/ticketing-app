@@ -1,0 +1,80 @@
+# Tickets service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-tickets-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketing-tickets
+  template:
+    metadata:
+      labels:
+        app: ticketing-tickets
+    spec:
+      containers:
+        - name: ticketing-tickets
+          # image: us.gcr.io/ticketing-dev-id/tickets
+          image: pashkoostap/ticketing-tickets
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://ticketing-tickets-mongo-srv:27017/tickets'
+            - name: NATS_URL
+              value: 'http://ticketing-nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: 'ticketing-nats'
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketing-tickets-srv
+spec:
+  selector:
+    app: ticketing-tickets
+  ports:
+    - name: ticketing-tickets
+      protocol: TCP
+      port: 4001
+      targetPort: 4001
+# Tickets mongo DB
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-tickets-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketing-tickets-mongo
+  template:
+    metadata:
+      labels:
+        app: ticketing-tickets-mongo
+    spec:
+      containers:
+        - name: ticketing-tickets-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketing-tickets-mongo-srv
+spec:
+  selector:
+    app: ticketing-tickets-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

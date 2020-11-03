@@ -9,7 +9,7 @@ import {
 } from '@pashkoostap_learning_ticketing/common';
 import {
   createOrderRouter,
-  deleteOrderRouter,
+  cancelOrderRouter,
   getAllOrdersRouter,
   getOrderRouter,
 } from './routes';
@@ -29,7 +29,7 @@ app.use(currentUser);
 app.use(getAllOrdersRouter);
 app.use(getOrderRouter);
 app.use(createOrderRouter);
-app.use(deleteOrderRouter);
+app.use(cancelOrderRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();

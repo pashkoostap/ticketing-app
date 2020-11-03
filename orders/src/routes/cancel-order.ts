@@ -1,15 +1,14 @@
 import {
-  BadRequestError,
   NotAuthorizedError,
   NotFoundError,
   requireAuth,
 } from '@pashkoostap_learning_ticketing/common';
 import { Router } from 'express';
-import { Order } from '../models';
+import { Order, OrderStatus } from '../models';
 
 const router = Router();
 
-router.get('/api/orders/:id', requireAuth, async (req, res) => {
+router.put('/api/orders/:id', requireAuth, async (req, res) => {
   const order = await Order.findById(req.params.id).populate('ticket');
 
   if (!order) {
@@ -20,7 +19,10 @@ router.get('/api/orders/:id', requireAuth, async (req, res) => {
     throw new NotAuthorizedError();
   }
 
+  order.set('status', OrderStatus.Cancelled);
+  await order.save();
+
   res.status(200).send(order);
 });
 
-export { router as getOrderRouter };
+export { router as cancelOrderRouter };

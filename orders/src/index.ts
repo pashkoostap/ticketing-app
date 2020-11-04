@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { natsClient } from './nats';
 
 import { app } from './app';
+import { listen } from './nats';
 
 const connectDB = async () => {
   if (!process.env.PORT) {
@@ -49,6 +50,9 @@ const connectDB = async () => {
     });
     process.on('SIGINT', () => natsClient.client.close());
     process.on('SIGTERM', () => natsClient.client.close());
+
+    // Listen events
+    listen(natsClient.client);
 
     app.listen(process.env.PORT, () => {
       console.log(`orders/0.0.1:${process.env.PORT}`);

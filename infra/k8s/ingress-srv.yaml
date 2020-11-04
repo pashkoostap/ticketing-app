@@ -10,15 +10,15 @@ spec:
     - host: ticketing.dev
       http:
         paths:
-          - path: /api/users/?(.*)/
+          - path: /api/users/?(.*)
             backend:
               serviceName: ticketing-auth-srv
               servicePort: 4000
-          - path: /api/tickets/?(.*)/
+          - path: /api/tickets/?(.*)
             backend:
               serviceName: ticketing-tickets-srv
               servicePort: 4001
-          - path: /api/orders/?(.*)/
+          - path: /api/orders/?(.*)
             backend:
               serviceName: ticketing-orders-srv
               servicePort: 4002

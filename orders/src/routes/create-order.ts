@@ -9,6 +9,7 @@ import {
 } from '@pashkoostap_learning_ticketing/common';
 
 import { Order, Ticket } from '../models';
+import { OrderCreatedPublisher, natsClient } from '../nats';
 
 const router = Router();
 
@@ -44,6 +45,19 @@ router.post(
       expiresAt,
     });
     await order.save();
+
+    const publisher = new OrderCreatedPublisher(natsClient.client);
+    publisher.publish({
+      id: order.id,
+      userId: req.currentUser!.id,
+      status: order.status,
+      expiresAt: order.expiresAt.toISOString(),
+      ticket: {
+        id: ticket.id,
+        price: ticket.price,
+        title: ticket.title,
+      },
+    });
 
     res.status(201).send(order);
   }

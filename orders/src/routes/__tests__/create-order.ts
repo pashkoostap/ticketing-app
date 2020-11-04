@@ -3,6 +3,7 @@ import { ObjectId } from 'mongodb';
 
 import { Order, OrderStatus, Ticket, TicketDoc } from '../../models';
 import { app } from '../../app';
+import { natsClient } from '../../nats/client';
 
 let ticket: TicketDoc | null = null;
 
@@ -51,5 +52,12 @@ describe('create-order', () => {
     expect(res.status).toEqual(201);
   });
 
-  it.todo('should emit an order:created event');
+  it('should emit an order:created event', async () => {
+    await request(app)
+      .post('/api/orders')
+      .set('Cookie', global.signin())
+      .send({ ticketId: ticket?.id });
+
+    expect(natsClient.client.publish).toHaveBeenCalled();
+  });
 });

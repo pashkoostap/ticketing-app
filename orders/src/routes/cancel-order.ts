@@ -5,6 +5,7 @@ import {
 } from '@pashkoostap_learning_ticketing/common';
 import { Router } from 'express';
 import { Order, OrderStatus } from '../models';
+import { natsClient, OrderCancelledPublisher } from '../nats';
 
 const router = Router();
 
@@ -21,6 +22,13 @@ router.put('/api/orders/:id', requireAuth, async (req, res) => {
 
   order.set('status', OrderStatus.Cancelled);
   await order.save();
+  const publisher = new OrderCancelledPublisher(natsClient.client);
+  publisher.publish({
+    id: order.id,
+    ticket: {
+      id: order.ticket.id,
+    },
+  });
 
   res.status(200).send(order);
 });

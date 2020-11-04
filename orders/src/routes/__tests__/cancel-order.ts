@@ -3,6 +3,7 @@ import { ObjectID } from 'mongodb';
 
 import { app } from '../../app';
 import { OrderStatus, Ticket } from '../../models';
+import { natsClient } from '../../nats';
 
 describe('cancel-order', () => {
   it('should return 404 if order does not exists', async () => {
@@ -56,5 +57,26 @@ describe('cancel-order', () => {
     expect(updateOrder.status).toEqual(OrderStatus.Cancelled);
   });
 
-  it.todo('should emit order:cancelled event');
+  it('should emit order:cancelled event', async () => {
+    const userAuth = global.signin();
+    const ticket = Ticket.build({
+      title: 'Ticket title',
+      price: 20,
+    });
+    await ticket.save();
+
+    const { body: order } = await request(app)
+      .post('/api/orders')
+      .set('Cookie', userAuth)
+      .send({
+        ticketId: ticket.id,
+      })
+      .expect(201);
+    await request(app)
+      .put(`/api/orders/${order.id}`)
+      .set('Cookie', userAuth)
+      .expect(200);
+
+    expect(natsClient.client.publish).toHaveBeenCalled();
+  });
 });

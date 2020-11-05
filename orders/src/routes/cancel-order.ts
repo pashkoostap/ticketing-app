@@ -25,6 +25,7 @@ router.put('/api/orders/:id', requireAuth, async (req, res) => {
   const publisher = new OrderCancelledPublisher(natsClient.client);
   publisher.publish({
     id: order.id,
+    version: order.ticket.version,
     ticket: {
       id: order.ticket.id,
     },

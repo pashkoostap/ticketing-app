@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 import { natsClient } from './nats';
 
 import { app } from './app';

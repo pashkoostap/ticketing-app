@@ -1,0 +1,29 @@
+{
+  "name": "ticketing-app",
+  "version": "0.0.1",
+  "description": "Ticketing app ",
+  "main": "index.js",
+  "scripts": {
+    "update-common": "node ./scripts/update-common-library.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pashkoostap/ticketing-app.git"
+  },
+  "keywords": [
+    "kubernetes",
+    "docker",
+    "nats",
+    "react",
+    "node.js"
+  ],
+  "author": "pashko.ostap@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pashkoostap/ticketing-app/issues"
+  },
+  "homepage": "https://github.com/pashkoostap/ticketing-app#readme",
+  "dependencies": {
+    "async": "^3.2.0"
+  }
+}

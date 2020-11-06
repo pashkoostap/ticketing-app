@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { version } from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 import { Order, OrderStatus } from './order';
@@ -18,6 +18,13 @@ interface TicketDoc extends mongoose.Document {
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
   build(attrs: TicketAttrs): TicketDoc;
+  findByPreviousVersion({
+    id,
+    version,
+  }: {
+    id: string;
+    version: number;
+  }): Promise<TicketDoc | null>;
 }
 
 const TicketSchema = new mongoose.Schema(
@@ -50,6 +57,18 @@ TicketSchema.statics.build = (attrs: TicketAttrs) => {
     _id: attrs.id,
     title: attrs.title,
     price: attrs.price,
+  });
+};
+TicketSchema.statics.findByPreviousVersion = ({
+  id,
+  version,
+}: {
+  id: string;
+  version: number;
+}) => {
+  return Ticket.findOne({
+    _id: id,
+    version,
   });
 };
 TicketSchema.methods.isReserved = async function () {

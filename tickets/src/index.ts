@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { natsClient } from './nats';
 
 import { app } from './app';
+import { listenToEvents } from './nats/listeners';
 
 const connectDB = async () => {
   if (!process.env.JWT_KEY) {
@@ -46,6 +47,8 @@ const connectDB = async () => {
     });
     process.on('SIGINT', () => natsClient.client.close());
     process.on('SIGTERM', () => natsClient.client.close());
+
+    listenToEvents(natsClient.client);
 
     app.listen(4001, () => {
       console.log('tickets/0.0.1:4001');

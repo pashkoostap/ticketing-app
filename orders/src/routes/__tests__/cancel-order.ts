@@ -16,6 +16,7 @@ describe('cancel-order', () => {
   it('should return 401 if user is not authorized', async () => {
     const userAuth = global.signin();
     const ticket = Ticket.build({
+      id: new ObjectID().toHexString(),
       title: 'Ticket title',
       price: 20,
     });
@@ -37,6 +38,7 @@ describe('cancel-order', () => {
   it('should change the order status to cancelled', async () => {
     const userAuth = global.signin();
     const ticket = Ticket.build({
+      id: new ObjectID().toHexString(),
       title: 'Ticket title',
       price: 20,
     });
@@ -60,6 +62,7 @@ describe('cancel-order', () => {
   it('should emit order:cancelled event', async () => {
     const userAuth = global.signin();
     const ticket = Ticket.build({
+      id: new ObjectID().toHexString(),
       title: 'Ticket title',
       price: 20,
     });

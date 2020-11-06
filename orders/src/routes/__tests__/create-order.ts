@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { ObjectId } from 'mongodb';
+import { ObjectID } from 'mongodb';
 
 import { Order, OrderStatus, Ticket, TicketDoc } from '../../models';
 import { app } from '../../app';
@@ -9,6 +9,7 @@ let ticket: TicketDoc | null = null;
 
 beforeEach(async () => {
   ticket = Ticket.build({
+    id: new ObjectID().toHexString(),
     title: 'Ticket title',
     price: 20,
   });
@@ -18,7 +19,7 @@ beforeEach(async () => {
 
 describe('create-order', () => {
   it('should return an error if the ticket does not exist', async () => {
-    const ticketId = new ObjectId();
+    const ticketId = new ObjectID();
 
     await request(app)
       .post('/api/orders')

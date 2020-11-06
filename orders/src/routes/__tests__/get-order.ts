@@ -15,6 +15,7 @@ describe('get-order', () => {
   it('should return 401 if user is not authorized', async () => {
     const userAuth = global.signin();
     const ticket = Ticket.build({
+      id: new ObjectID().toHexString(),
       title: 'Ticket title',
       price: 20,
     });
@@ -36,6 +37,7 @@ describe('get-order', () => {
   it('should return an order', async () => {
     const userAuth = global.signin();
     const ticket = Ticket.build({
+      id: new ObjectID().toHexString(),
       title: 'Ticket title',
       price: 20,
     });

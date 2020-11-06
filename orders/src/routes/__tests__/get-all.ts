@@ -1,10 +1,11 @@
 import request from 'supertest';
 import { ObjectID } from 'mongodb';
-import { OrderDoc, Ticket, TicketDoc } from '../../models';
+import { OrderDoc, Ticket } from '../../models';
 import { app } from '../../app';
 
 const createTicket = async () => {
   const ticket = Ticket.build({
+    id: new ObjectID().toHexString(),
     title: 'Ticket title',
     price: 20,
   });

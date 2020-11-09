@@ -1,4 +1,5 @@
 import {
+  BadRequestError,
   NotAuthorizedError,
   NotFoundError,
   requireAuth,
@@ -29,6 +30,10 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError('Ticket not found');
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Ticket is reserved');
     }
 
     if (ticket.userId !== userId) {

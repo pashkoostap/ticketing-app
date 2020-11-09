@@ -3,6 +3,7 @@ import { ObjectID } from 'mongodb';
 
 import { app } from '../../app';
 import { natsClient } from '../../nats';
+import { Ticket } from '../../models';
 
 describe('update ticket', () => {
   it('should return a 404 if the provided id does not exist', async () => {
@@ -101,5 +102,23 @@ describe('update ticket', () => {
       .expect(200);
 
     expect(natsClient.client.publish).toHaveBeenCalled();
+  });
+
+  it('should reject the request if the ticket is reserved', async () => {
+    const cookie = global.signin();
+    const orderId = new ObjectID();
+    const createRes = await request(app)
+      .post('/api/tickets')
+      .set('Cookie', cookie)
+      .send({ title: 'Ticket title', price: 20 });
+    await Ticket.findOneAndUpdate(
+      { _id: createRes.body.id },
+      { orderId: orderId.toHexString() }
+    );
+    await request(app)
+      .put(`/api/tickets/${createRes.body.id}`)
+      .set('Cookie', cookie)
+      .send({ title: 'New title', price: 100 })
+      .expect(400);
   });
 });

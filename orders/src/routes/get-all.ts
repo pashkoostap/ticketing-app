@@ -1,4 +1,4 @@
-import { requireAuth } from '@pashkoostap_learning_ticketing/common';
+import { requireAuth } from '@pashkoostap-learning/ticketing-common';
 import { Router } from 'express';
 
 import { Order } from '../models';

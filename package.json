@@ -4,7 +4,8 @@
   "description": "Ticketing app ",
   "main": "index.js",
   "scripts": {
-    "update-common": "node ./scripts/update-common-library.js"
+    "update-common": "node ./scripts/update-common-library.js",
+    "install-all": "node ./scripts/install-all.js"
   },
   "repository": {
     "type": "git",

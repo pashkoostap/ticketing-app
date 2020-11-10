@@ -6,7 +6,7 @@ import {
   OrderStatus,
   requireAuth,
   validateRequest,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 
 import { Order, Ticket } from '../models';
 import { OrderCreatedPublisher, natsClient } from '../nats';
@@ -52,7 +52,6 @@ router.post(
       userId: req.currentUser!.id,
       status: order.status,
       expiresAt: order.expiresAt.toISOString(),
-      version: order.version,
       ticket: {
         id: ticket.id,
         price: ticket.price,

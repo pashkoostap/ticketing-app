@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@pashkoostap_learning_ticketing/common": "0.0.18",
+    "@pashkoostap-learning/ticketing-common": "^0.1.1",
     "@types/cookie-session": "^2.0.41",
     "@types/express": "^4.17.8",
     "@types/jsonwebtoken": "^8.5.0",

@@ -3,7 +3,7 @@ import { Message } from 'node-nats-streaming';
 import {
   SubjectType,
   TicketCreatedEvent,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 
 import { TicketCreatedListener } from '../ticket-created';
 import { natsClient } from '../../client';

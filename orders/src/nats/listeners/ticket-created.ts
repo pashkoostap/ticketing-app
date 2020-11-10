@@ -4,7 +4,7 @@ import {
   Listener,
   SubjectType,
   TicketCreatedEvent,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 import { groupName } from '../constants';
 import { Ticket } from '../../models';
 

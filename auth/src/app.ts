@@ -6,7 +6,7 @@ import cookieSession from 'cookie-session';
 import {
   errorHandler,
   NotFoundError,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 import {
   currentUserRouter,
   signinRouter,

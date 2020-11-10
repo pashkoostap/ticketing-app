@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { currentUser } from '@pashkoostap_learning_ticketing/common';
+import { currentUser } from '@pashkoostap-learning/ticketing-common';
 
 const router = Router();
 

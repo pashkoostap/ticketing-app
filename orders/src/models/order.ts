@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { OrderStatus } from '@pashkoostap_learning_ticketing/common';
+import { OrderStatus } from '@pashkoostap-learning/ticketing-common';
 
 import { TicketDoc } from './ticket';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';

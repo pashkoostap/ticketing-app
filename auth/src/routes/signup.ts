@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import {
   BadRequestError,
   validateRequest,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 import { User } from '../models';
 
 const router = Router();

@@ -4,7 +4,7 @@ import { body } from 'express-validator';
 import {
   requireAuth,
   validateRequest,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 
 import { Ticket, TicketSchema } from '../models';
 import { TicketCreatedPublisher, natsClient } from '../nats';

@@ -3,7 +3,7 @@ import {
   SubjectType,
   TicketCreatedEvent,
   TicketUpdatedEvent,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 
 export class TicketCreatedPublisher extends Publisher<TicketCreatedEvent> {
   subject: SubjectType.TicketCreated = SubjectType.TicketCreated;

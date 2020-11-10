@@ -1,4 +1,4 @@
-import { OrderCancelledEvent } from '@pashkoostap_learning_ticketing/common';
+import { OrderCancelledEvent } from '@pashkoostap-learning/ticketing-common';
 import { ObjectID } from 'mongodb';
 import { Message } from 'node-nats-streaming';
 

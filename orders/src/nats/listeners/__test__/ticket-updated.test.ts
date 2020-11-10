@@ -4,7 +4,7 @@ import {
   SubjectType,
   TicketCreatedEvent,
   TicketUpdatedEvent,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 
 import { natsClient } from '../../client';
 import { Ticket } from '../../../models';

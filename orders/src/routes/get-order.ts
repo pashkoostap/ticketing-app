@@ -3,7 +3,7 @@ import {
   NotAuthorizedError,
   NotFoundError,
   requireAuth,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 import { Router } from 'express';
 import { Order } from '../models';
 

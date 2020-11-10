@@ -4,7 +4,7 @@ import {
   NotFoundError,
   requireAuth,
   validateRequest,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 import { Response, Router, Request } from 'express';
 import { body } from 'express-validator';
 

@@ -1,7 +1,7 @@
 import {
   OrderCreatedEvent,
   OrderStatus,
-} from '@pashkoostap_learning_ticketing/common';
+} from '@pashkoostap-learning/ticketing-common';
 import { ObjectID } from 'mongodb';
 import { Ticket } from '../../../models';
 

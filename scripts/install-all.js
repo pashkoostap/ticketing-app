@@ -6,10 +6,12 @@ const task = (folder) => async () => {
   const folderPath = path.resolve(__dirname, '..', folder);
   const commands = [
     `cd ${folderPath}`,
-    'npm install @pashkoostap-learning/ticketing-common@latest',
+    'rm -rf node_modules',
+    'rm -rf package-lock.json',
+    'npm install',
   ];
 
-  return exec(commands.join('&&'), () => console.log(`updated ${folder}`));
+  return exec(commands.join('&&'), () => console.log(`installed ${folder}`));
 };
 
-series([task('orders'), task('tickets'), task('auth')]);
+series([task('orders'), task('tickets'), task('auth'), task('client')]);

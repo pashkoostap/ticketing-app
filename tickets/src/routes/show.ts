@@ -1,4 +1,4 @@
-import { NotFoundError } from '@pashkoostap_learning_ticketing/common';
+import { NotFoundError } from '@pashkoostap-learning/ticketing-common';
 import { Response, Router, Request } from 'express';
 import { Ticket } from '../models';
 const router = Router();

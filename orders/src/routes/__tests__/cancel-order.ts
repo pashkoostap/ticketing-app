@@ -3,7 +3,7 @@ import { ObjectID } from 'mongodb';
 
 import { app } from '../../app';
 import { OrderStatus, Ticket } from '../../models';
-import { natsClient } from '../../nats';
+import { nats } from '../../nats';
 
 describe('cancel-order', () => {
   it('should return 404 if order does not exists', async () => {
@@ -80,6 +80,6 @@ describe('cancel-order', () => {
       .set('Cookie', userAuth)
       .expect(200);
 
-    expect(natsClient.client.publish).toHaveBeenCalled();
+    expect(nats.client.publish).toHaveBeenCalled();
   });
 });

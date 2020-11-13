@@ -7,10 +7,16 @@ import {
 import { Message } from 'node-nats-streaming';
 
 import { groupName } from '../constants';
-
+import { expirationQueue } from '../../queues';
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   subject: SubjectType.OrderCreated = SubjectType.OrderCreated;
   groupName = groupName;
 
-  onMessage(data: OrderCreatedEvent['data'], msg: Message) {}
+  async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
+    const delay = new Date(data.expiresAt).getTime() - Date.now();
+
+    await expirationQueue.add({ orderId: data.id }, { delay });
+
+    msg.ack();
+  }
 }

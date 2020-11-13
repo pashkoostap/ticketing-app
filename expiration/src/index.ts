@@ -1,4 +1,4 @@
-import { natsClient } from './nats';
+import { nats } from './nats';
 import { listenToEvents } from './nats/listeners';
 
 const start = async () => {
@@ -15,18 +15,20 @@ const start = async () => {
   }
 
   try {
-    await natsClient.connect(
+    await nats.connect(
       process.env.NATS_CLUSTER_ID,
       process.env.NATS_CLIENT_ID,
       process.env.NATS_URL
     );
 
-    natsClient.client.on('close', () => {
+    nats.client.on('close', () => {
       console.log('NATS connection closed');
       process.exit();
     });
-    process.on('SIGINT', () => natsClient.client.close());
-    process.on('SIGTERM', () => natsClient.client.close());
+    process.on('SIGINT', () => nats.client.close());
+    process.on('SIGTERM', () => nats.client.close());
+
+    listenToEvents(nats.client);
   } catch (err) {
     console.error(err);
   }

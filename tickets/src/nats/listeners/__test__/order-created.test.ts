@@ -5,11 +5,11 @@ import {
 import { ObjectID } from 'mongodb';
 import { Ticket } from '../../../models';
 
-import { natsClient } from '../../client';
+import { nats } from '../../client';
 import { OrderCreatedListener } from '../order-created';
 
 const setupListener = async () => {
-  const listener = new OrderCreatedListener(natsClient.client);
+  const listener = new OrderCreatedListener(nats.client);
   const ticket = Ticket.build({
     title: 'Ticket title',
     price: 20,
@@ -57,10 +57,10 @@ describe('listeners:order-created', () => {
 
     await listener.onMessage(eventData, message);
 
-    expect(natsClient.client.publish).toHaveBeenCalled();
+    expect(nats.client.publish).toHaveBeenCalled();
 
     const ticketUpdatedEventData = JSON.parse(
-      (natsClient.client.publish as jest.Mock).mock.calls[0][1]
+      (nats.client.publish as jest.Mock).mock.calls[0][1]
     );
 
     expect(ticketUpdatedEventData.orderId).toEqual(eventData.id);

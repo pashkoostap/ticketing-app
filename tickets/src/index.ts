@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { natsClient } from './nats';
+import { nats } from './nats';
 
 import { app } from './app';
 import { listenToEvents } from './nats/listeners';
@@ -35,20 +35,20 @@ const connectDB = async () => {
 
     console.log(`Connected to: ${process.env.MONGO_URI}`);
 
-    await natsClient.connect(
+    await nats.connect(
       process.env.NATS_CLUSTER_ID,
       process.env.NATS_CLIENT_ID,
       process.env.NATS_URL
     );
 
-    natsClient.client.on('close', () => {
+    nats.client.on('close', () => {
       console.log('NATS connection closed');
       process.exit();
     });
-    process.on('SIGINT', () => natsClient.client.close());
-    process.on('SIGTERM', () => natsClient.client.close());
+    process.on('SIGINT', () => nats.client.close());
+    process.on('SIGTERM', () => nats.client.close());
 
-    listenToEvents(natsClient.client);
+    listenToEvents(nats.client);
 
     app.listen(4001, () => {
       console.log('tickets/0.0.1:4001');

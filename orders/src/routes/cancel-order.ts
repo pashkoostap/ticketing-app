@@ -5,7 +5,7 @@ import {
 } from '@pashkoostap-learning/ticketing-common';
 import { Router } from 'express';
 import { Order, OrderStatus } from '../models';
-import { natsClient, OrderCancelledPublisher } from '../nats';
+import { nats, OrderCancelledPublisher } from '../nats';
 
 const router = Router();
 
@@ -22,7 +22,7 @@ router.put('/api/orders/:id', requireAuth, async (req, res) => {
 
   order.set('status', OrderStatus.Cancelled);
   await order.save();
-  const publisher = new OrderCancelledPublisher(natsClient.client);
+  const publisher = new OrderCancelledPublisher(nats.client);
   publisher.publish({
     id: order.id,
     version: order.version,

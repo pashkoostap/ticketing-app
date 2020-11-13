@@ -2,7 +2,7 @@ import request from 'supertest';
 import { ObjectID } from 'mongodb';
 
 import { app } from '../../app';
-import { natsClient } from '../../nats';
+import { nats } from '../../nats';
 import { Ticket } from '../../models';
 
 describe('update ticket', () => {
@@ -101,7 +101,7 @@ describe('update ticket', () => {
       .send({ title: 'New title', price: 100 })
       .expect(200);
 
-    expect(natsClient.client.publish).toHaveBeenCalled();
+    expect(nats.client.publish).toHaveBeenCalled();
   });
 
   it('should reject the request if the ticket is reserved', async () => {

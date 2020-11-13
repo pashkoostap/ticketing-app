@@ -6,11 +6,11 @@ import {
 } from '@pashkoostap-learning/ticketing-common';
 
 import { TicketCreatedListener } from '../ticket-created';
-import { natsClient } from '../../client';
+import { nats } from '../../client';
 import { Ticket } from '../../../models';
 
 const setupListener = async () => {
-  const listener = new TicketCreatedListener(natsClient.client);
+  const listener = new TicketCreatedListener(nats.client);
   const eventData: TicketCreatedEvent['data'] = {
     id: new ObjectID().toHexString(),
     title: 'Ticket title',

@@ -3,8 +3,9 @@ import {
   SubjectType,
   TicketCreatedEvent,
   TicketUpdatedEvent,
+  OrderExpiredEvent,
 } from '@pashkoostap-learning/ticketing-common';
 
-export class TicketCreatedPublisher extends Publisher<TicketCreatedEvent> {
-  subject: SubjectType.TicketCreated = SubjectType.TicketCreated;
+export class OrderExpiredPublisher extends Publisher<OrderExpiredEvent> {
+  subject: SubjectType.OrderExpired = SubjectType.OrderExpired;
 }

@@ -1,4 +1,4 @@
-import nats, { Stan } from 'node-nats-streaming';
+import nodeMats, { Stan } from 'node-nats-streaming';
 
 class NatsClientMock {
   private _client?: any;
@@ -28,4 +28,4 @@ class NatsClientMock {
   }
 }
 
-export const natsClient = new NatsClientMock();
+export const nats = new NatsClientMock();

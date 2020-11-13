@@ -3,11 +3,11 @@ import { ObjectID } from 'mongodb';
 import { Message } from 'node-nats-streaming';
 
 import { Ticket } from '../../../models';
-import { natsClient } from '../../client';
+import { nats } from '../../client';
 import { OrderCancelledListener } from '../order-cancelled';
 
 const setupListener = async () => {
-  const listener = new OrderCancelledListener(natsClient.client);
+  const listener = new OrderCancelledListener(nats.client);
   const orderId = new ObjectID().toHexString();
   const ticket = Ticket.build({
     title: 'Ticket title',
@@ -43,6 +43,6 @@ describe('listeners:order-cancelled', () => {
 
     expect(updatedTicket?.orderId).toBeUndefined();
     expect(message.ack).toHaveBeenCalled();
-    expect(natsClient.client.publish).toHaveBeenCalled();
+    expect(nats.client.publish).toHaveBeenCalled();
   });
 });

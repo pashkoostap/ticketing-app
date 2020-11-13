@@ -2,7 +2,7 @@ import request from 'supertest';
 
 import { app } from '../../app';
 import { Ticket } from '../../models';
-import { natsClient } from '../../nats/client';
+import { nats } from '../../nats/client';
 
 describe('new ticket', () => {
   it('has a route handler listening to /api/tickets POST requests', async () => {
@@ -95,6 +95,6 @@ describe('new ticket', () => {
       })
       .expect(201);
 
-    expect(natsClient.client.publish).toHaveBeenCalled();
+    expect(nats.client.publish).toHaveBeenCalled();
   });
 });

@@ -9,11 +9,11 @@ import {
 } from '@pashkoostap-learning/ticketing-common';
 
 import { Order, Ticket } from '../models';
-import { OrderCreatedPublisher, natsClient } from '../nats';
+import { OrderCreatedPublisher, nats } from '../nats';
 
 const router = Router();
 
-const EXPIRATION_SECONDS = 15 * 60;
+const EXPIRATION_SECONDS = 0.1 * 60;
 
 router.post(
   '/api/orders',
@@ -46,7 +46,7 @@ router.post(
     });
     await order.save();
 
-    const publisher = new OrderCreatedPublisher(natsClient.client);
+    const publisher = new OrderCreatedPublisher(nats.client);
     publisher.publish({
       id: order.id,
       userId: req.currentUser!.id,

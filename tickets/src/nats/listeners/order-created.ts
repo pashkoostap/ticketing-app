@@ -8,7 +8,7 @@ import {
 import { groupName } from '../constants';
 import { Ticket } from '../../models';
 import { TicketUpdatedPublisher } from '../publishers';
-import { natsClient } from '../client';
+import { nats } from '../client';
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   subject: SubjectType.OrderCreated = SubjectType.OrderCreated;

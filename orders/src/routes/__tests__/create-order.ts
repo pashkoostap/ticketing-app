@@ -3,7 +3,7 @@ import { ObjectID } from 'mongodb';
 
 import { Order, OrderStatus, Ticket, TicketDoc } from '../../models';
 import { app } from '../../app';
-import { natsClient } from '../../nats/client';
+import { nats } from '../../nats/client';
 
 let ticket: TicketDoc | null = null;
 
@@ -59,6 +59,6 @@ describe('create-order', () => {
       .set('Cookie', global.signin())
       .send({ ticketId: ticket?.id });
 
-    expect(natsClient.client.publish).toHaveBeenCalled();
+    expect(nats.client.publish).toHaveBeenCalled();
   });
 });

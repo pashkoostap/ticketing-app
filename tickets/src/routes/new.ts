@@ -7,7 +7,7 @@ import {
 } from '@pashkoostap-learning/ticketing-common';
 
 import { Ticket, TicketSchema } from '../models';
-import { TicketCreatedPublisher, natsClient } from '../nats';
+import { TicketCreatedPublisher, nats } from '../nats';
 
 const router = Router();
 
@@ -28,7 +28,7 @@ router.post(
       price,
       userId: req.currentUser!.id,
     });
-    const publisher = new TicketCreatedPublisher(natsClient.client);
+    const publisher = new TicketCreatedPublisher(nats.client);
 
     await publisher.publish({
       id: ticket.id,

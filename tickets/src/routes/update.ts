@@ -9,7 +9,7 @@ import { Response, Router, Request } from 'express';
 import { body } from 'express-validator';
 
 import { Ticket } from '../models';
-import { TicketUpdatedPublisher, natsClient } from '../nats';
+import { TicketUpdatedPublisher, nats } from '../nats';
 
 const router = Router();
 
@@ -42,7 +42,7 @@ router.put(
 
     ticket.set({ title, price });
     await ticket.save();
-    const publisher = new TicketUpdatedPublisher(natsClient.client);
+    const publisher = new TicketUpdatedPublisher(nats.client);
     await publisher.publish({
       id: ticket.id,
       title: ticket.title,

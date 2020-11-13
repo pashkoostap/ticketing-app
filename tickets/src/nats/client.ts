@@ -1,4 +1,4 @@
-import nats, { Stan } from 'node-nats-streaming';
+import nodeNats, { Stan } from 'node-nats-streaming';
 
 class NatsClient {
   private _client?: Stan;
@@ -16,7 +16,7 @@ class NatsClient {
   }
 
   connect(clusterId: string, clientId: string, url: string): Promise<void> {
-    this.client = nats.connect(clusterId, clientId, { url });
+    this.client = nodeNats.connect(clusterId, clientId, { url });
 
     return new Promise((resolve, reject) => {
       this.client.on('connect', () => {
@@ -29,4 +29,4 @@ class NatsClient {
   }
 }
 
-export const natsClient = new NatsClient();
+export const nats = new NatsClient();

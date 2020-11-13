@@ -12,4 +12,10 @@ const task = (folder) => async () => {
   return exec(commands.join('&&'), () => console.log(`updated ${folder}`));
 };
 
-series([task('orders'), task('tickets'), task('auth'), task('expiration')]);
+series([
+  task('orders'),
+  task('tickets'),
+  task('auth'),
+  task('expiration'),
+  task('payments'),
+]);

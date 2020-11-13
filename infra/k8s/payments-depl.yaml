@@ -1,27 +1,27 @@
-# Orders service
+# Payments service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ticketing-orders-depl
+  name: ticketing-payments-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ticketing-orders
+      app: ticketing-payments
   template:
     metadata:
       labels:
-        app: ticketing-orders
+        app: ticketing-payments
     spec:
       containers:
-        - name: ticketing-orders
-          # image: us.gcr.io/ticketing-dev-id/orders
-          image: pashkoostap/ticketing-orders
+        - name: ticketing-payments
+          # image: us.gcr.io/ticketing-dev-id/payments
+          image: pashkoostap/ticketing-payments
           env:
             - name: PORT
               value: '4000'
             - name: MONGO_URI
-              value: 'mongodb://ticketing-orders-mongo-srv:27017/orders'
+              value: 'mongodb://ticketing-payments-mongo-srv:27017/payments'
             - name: NATS_URL
               value: 'http://ticketing-nats-srv:4222'
             - name: NATS_CLUSTER_ID
@@ -39,42 +39,42 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ticketing-orders-srv
+  name: ticketing-payments-srv
 spec:
   selector:
-    app: ticketing-orders
+    app: ticketing-payments
   ports:
-    - name: ticketing-orders
+    - name: ticketing-payments
       protocol: TCP
       port: 4000
       targetPort: 4000
-# Orders mongo DB
+# Payments mongo DB
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ticketing-orders-mongo-depl
+  name: ticketing-payments-mongo-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ticketing-orders-mongo
+      app: ticketing-payments-mongo
   template:
     metadata:
       labels:
-        app: ticketing-orders-mongo
+        app: ticketing-payments-mongo
     spec:
       containers:
-        - name: ticketing-orders-mongo
+        - name: ticketing-payments-mongo
           image: mongo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ticketing-orders-mongo-srv
+  name: ticketing-payments-mongo-srv
 spec:
   selector:
-    app: ticketing-orders-mongo
+    app: ticketing-payments-mongo
   ports:
     - name: db
       protocol: TCP

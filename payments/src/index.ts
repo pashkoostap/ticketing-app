@@ -1,11 +1,14 @@
 import mongoose from 'mongoose';
-
 import { nats } from './nats';
 
 import { app } from './app';
-import { listenToEvents } from './nats/listeners';
+import { listenToEvents } from './nats';
 
 const connectDB = async () => {
+  if (!process.env.PORT) {
+    throw new Error('PORT must be defined');
+  }
+
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');
   }
@@ -50,8 +53,8 @@ const connectDB = async () => {
 
     listenToEvents(nats.client);
 
-    app.listen(4000, () => {
-      console.log('tickets/0.0.1:4000');
+    app.listen(process.env.PORT, () => {
+      console.log(`payments/0.0.1:${process.env.PORT}`);
     });
   } catch (err) {
     console.error(err);

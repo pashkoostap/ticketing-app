@@ -7,7 +7,7 @@ import {
 } from '@pashkoostap-learning/ticketing-common';
 
 import { groupName } from '../constants';
-import { Order } from '../../models';
+import { Order, Ticket } from '../../models';
 import { OrderCancelledPublisher } from '../publishers';
 
 export class OrderExpiredListener extends Listener<OrderExpiredEvent> {
@@ -31,7 +31,7 @@ export class OrderExpiredListener extends Listener<OrderExpiredEvent> {
       id: order.id,
       version: order.version,
       ticket: {
-        id: order.ticket.id,
+        id: order.ticket._id,
       },
     });
 

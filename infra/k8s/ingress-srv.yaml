@@ -17,11 +17,15 @@ spec:
           - path: /api/tickets/?(.*)
             backend:
               serviceName: ticketing-tickets-srv
-              servicePort: 4001
+              servicePort: 4000
           - path: /api/orders/?(.*)
             backend:
               serviceName: ticketing-orders-srv
-              servicePort: 4002
+              servicePort: 4000
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: ticketing-orders-srv
+              servicePort: 4000
           - path: /?(.*)
             backend:
               serviceName: ticketing-client-srv

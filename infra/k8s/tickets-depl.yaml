@@ -44,8 +44,8 @@ spec:
   ports:
     - name: ticketing-tickets
       protocol: TCP
-      port: 4001
-      targetPort: 4001
+      port: 4000
+      targetPort: 4000
 # Tickets mongo DB
 ---
 apiVersion: apps/v1

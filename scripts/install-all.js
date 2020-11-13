@@ -14,4 +14,11 @@ const task = (folder) => async () => {
   return exec(commands.join('&&'), () => console.log(`installed ${folder}`));
 };
 
-series([task('orders'), task('tickets'), task('auth'), task('client')]);
+series([
+  task('orders'),
+  task('tickets'),
+  task('auth'),
+  task('client'),
+  taks('expiration'),
+  task('payments'),
+]);

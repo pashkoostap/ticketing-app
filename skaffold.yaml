@@ -43,6 +43,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: pashkoostap/ticketing-payments
+      context: payments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: pashkoostap/ticketing-client
       context: client
       docker:

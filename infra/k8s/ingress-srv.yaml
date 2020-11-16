@@ -24,7 +24,7 @@ spec:
               servicePort: 4000
           - path: /api/payments/?(.*)
             backend:
-              serviceName: ticketing-orders-srv
+              serviceName: ticketing-payments-srv
               servicePort: 4000
           - path: /?(.*)
             backend:

@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@pashkoostap-learning/ticketing-common": "^0.1.4",
+    "@pashkoostap-learning/ticketing-common": "^0.1.5",
     "@types/bull": "^3.14.4",
     "bull": "^3.18.1",
     "ts-node-dev": "^1.0.0",

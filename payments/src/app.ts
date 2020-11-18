@@ -7,7 +7,7 @@ import {
   errorHandler,
   NotFoundError,
 } from '@pashkoostap-learning/ticketing-common';
-import { createChargeRouter } from './routes';
+import { createPaymentRouter } from './routes';
 
 export const app = express();
 
@@ -21,7 +21,7 @@ app.use(
 );
 
 app.use(currentUser);
-app.use(createChargeRouter);
+app.use(createPaymentRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();

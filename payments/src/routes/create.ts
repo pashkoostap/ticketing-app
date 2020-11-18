@@ -9,7 +9,8 @@ import {
 import { Request, Response, Router } from 'express';
 import { body } from 'express-validator';
 
-import { Order } from '../models';
+import { Order, Payment } from '../models';
+import { nats, PaymentCreatedPublisher } from '../nats';
 import { stripe } from '../stripe';
 
 const router = Router();
@@ -35,14 +36,24 @@ router.post(
       throw new BadRequestError('Order has been cancelled');
     }
 
-    await stripe.charges.create({
+    const { id: stripeId } = await stripe.charges.create({
       currency: 'usd',
       amount: order.price * 100,
       source: token,
     });
 
-    res.send('dsds');
+    const payment = Payment.build({ orderId, stripeId });
+    await payment.save();
+
+    const publisher = new PaymentCreatedPublisher(nats.client);
+    publisher.publish({
+      id: payment._id,
+      orderId: payment.orderId,
+      stripeId: payment.stripeId,
+    });
+
+    res.status(204).send(payment);
   }
 );
 
-export { router as createChargeRouter };
+export { router as createPaymentRouter };

@@ -13,7 +13,7 @@ import { OrderCreatedPublisher, nats } from '../nats';
 
 const router = Router();
 
-const EXPIRATION_SECONDS = 1 * 60;
+const EXPIRATION_SECONDS = 5 * 60;
 
 router.post(
   '/api/orders',

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRequest } from '../../hooks';
+import Link from 'next/link';
+import router from 'next/router';
 
 const TicketDetail = ({ ticket }) => {
-  const { title, price, id } = ticket;
+  const { title, price, id, orderId } = ticket;
   const { request, errors } = useRequest({
     url: '/api/orders',
     method: 'POST',
@@ -10,27 +12,50 @@ const TicketDetail = ({ ticket }) => {
       ticketId: id,
     },
   });
+  const onPurchase = async () => {
+    const order = await request();
+
+    router.push(`/orders/${order.id}`);
+  };
 
   return (
-    <div className='col-12'>
-      <h2>{title}</h2>
-      <h3>Price: {price}</h3>
-      <button className='btn  btn-primary' onClick={request}>
-        Purchase
-      </button>
+    <div className='col-12' style={{ margin: '10px auto' }}>
+      <table className='table'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{title}</td>
+            <td>{price}</td>
+            <td>
+              {orderId ? (
+                <Link href='/orders/[id]' as={`/orders/${orderId}`}>
+                  <a>View</a>
+                </Link>
+              ) : (
+                <button className='btn  btn-primary' onClick={onPurchase}>
+                  Purchase
+                </button>
+              )}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
       {errors}
     </div>
   );
 };
 
 TicketDetail.getInitialProps = async (ctx, client) => {
-  const {
-    query: { id },
-  } = ctx;
+  const { data: ticket } = await client.get(`/api/tickets/${ctx.query.id}`);
 
-  const { data } = await client.get(`/api/tickets/${id}`);
-
-  return { ticket: data };
+  return { ticket };
 };
 
 export default TicketDetail;

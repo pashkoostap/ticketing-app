@@ -28,7 +28,7 @@ const SigninPage = () => {
         <div className='form-group'>
           <label>Email address</label>
           <input
-            className='form-cotrol'
+            className='form-control'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -37,7 +37,7 @@ const SigninPage = () => {
         <div className='form-group'>
           <label>Password</label>
           <input
-            className='form-cotrol'
+            className='form-control'
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}

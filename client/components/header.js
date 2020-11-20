@@ -3,8 +3,10 @@ import Link from 'next/link';
 
 const Header = ({ currentUser }) => {
   const links = [
-    !currentUser && { label: 'Sign up', href: '/auth/signup' },
+    currentUser && { label: 'Sell ticket', href: '/tickets/new' },
+    currentUser && { label: 'My orders', href: '/orders' },
     !currentUser && { label: 'Sign in', href: '/auth/signin' },
+    !currentUser && { label: 'Sign up', href: '/auth/signup' },
     currentUser && { label: 'Sign out', href: '/auth/signout' },
   ]
     .filter(Boolean)
@@ -23,7 +25,8 @@ const Header = ({ currentUser }) => {
           <a className='navbar-brand'>Ticketing</a>
         </Link>
 
-        <div className='d-flex  justify-content-end'>
+        <div className='d-flex  align-items-center  justify-content-end'>
+          {currentUser ? <span>{currentUser.email}</span> : null}
           <ul className='nav  d-flex  align-items-center'>{links}</ul>
         </div>
       </nav>

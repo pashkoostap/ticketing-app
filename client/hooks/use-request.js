@@ -20,12 +20,12 @@ const getErrorsContent = (err) => {
   return content;
 };
 
-export default ({ url, method = 'GET', data = null }) => {
+export default ({ url, method = 'GET', data = {} }) => {
   const [errors, setErrors] = useState(null);
 
-  const request = async () => {
+  const request = async (props = {}) => {
     try {
-      const res = await axios(url, { method, data });
+      const res = await axios(url, { method, data: { ...data, ...props } });
 
       setErrors(null);
 

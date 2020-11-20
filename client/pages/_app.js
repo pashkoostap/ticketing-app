@@ -8,7 +8,9 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
     <div>
       <Header currentUser={currentUser} />
 
-      <Component {...pageProps} />
+      <div className='container'>
+        <Component currentUser {...pageProps} />
+      </div>
     </div>
   );
 };
@@ -19,7 +21,11 @@ AppComponent.getInitialProps = async (context) => {
   let pageProps = {};
 
   if (context.Component.getInitialProps) {
-    pageProps = await context.Component.getInitialProps(context.ctx);
+    pageProps = await context.Component.getInitialProps(
+      context.ctx,
+      client,
+      data.currentUser
+    );
   }
 
   return {

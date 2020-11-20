@@ -22,34 +22,32 @@ const SignupPage = () => {
   };
 
   return (
-    <div className='container'>
-      <div className='col-12'>
-        <form onSubmit={onSubmit}>
-          <h1>Sign up</h1>
-          <div className='form-group'>
-            <label>Email address</label>
-            <input
-              className='form-cotrol'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+    <div className='col-6  offset-3'>
+      <form onSubmit={onSubmit}>
+        <h2>Sign up</h2>
+        <div className='form-group'>
+          <label>Email address</label>
+          <input
+            className='form-control'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-          <div className='form-group'>
-            <label>Password</label>
-            <input
-              className='form-cotrol'
-              type='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+        <div className='form-group'>
+          <label>Password</label>
+          <input
+            className='form-control'
+            type='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
-          {errors}
+        {errors}
 
-          <button className='btn  btn-primary'>Sign up</button>
-        </form>
-      </div>
+        <button className='btn  btn-primary'>Sign up</button>
+      </form>
     </div>
   );
 };

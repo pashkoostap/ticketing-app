@@ -14,7 +14,7 @@ const SignoutPage = () => {
     request().then(() => router.push('/'));
   }, []);
 
-  return <h1>Signing out...</h1>;
+  return <h2>Signing out...</h2>;
 };
 
 export default SignoutPage;

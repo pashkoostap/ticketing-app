@@ -21,6 +21,7 @@ const setupListener = async () => {
     userId: new ObjectID().toHexString(),
     expiresAt: new Date().toISOString(),
     status: OrderStatus.Created,
+    version: 0,
     ticket: {
       id: ticket.id,
       title: ticket.title,

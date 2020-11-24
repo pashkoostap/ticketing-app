@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd auth && docker build -t pashkoostap/ticketing-auth .
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - run: docker push pashkoostap/ticketing-auth

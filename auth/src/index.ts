@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import { app } from './app';
 
 const connectDB = async () => {
+  console.log('Checking test-auth workflow config');
+
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');
   }

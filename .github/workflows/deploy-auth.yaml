@@ -1,0 +1,20 @@
+name: deploy-auth
+
+on:
+  push:
+    branches:
+      - master
+    path:
+      - auth/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latets
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd auth && docker build -t pashkoostap/ticketing-auth .
+      - run: docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+        env:
+          DOCKER_HUB_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_HUB_PASSWORD: ${{ secrets.DOCKER_HUB_PASSWORD }}
+      - run: docker push pashkoostap/ticketing-auth

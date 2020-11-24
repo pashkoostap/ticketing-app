@@ -10,3 +10,5 @@
 - Stripe
 - Express
 - React
+- Jest
+- GitHub actions

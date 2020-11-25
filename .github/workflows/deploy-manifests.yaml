@@ -21,7 +21,7 @@ jobs:
       - name: 'Activate personal namespace'
         uses: okteto/namespace@master
         with:
-          name: ticketing-app
+          name: pashkoostap
 
       - name: 'Create deployment'
         uses: okteto/apply@master

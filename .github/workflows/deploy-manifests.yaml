@@ -8,7 +8,7 @@ on:
       - 'infra/**'
 
 jobs:
-  devflow:
+  prod:
     runs-on: ubuntu-latest
     steps:
       - name: checkout

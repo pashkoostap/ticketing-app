@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ticketing-expiration-depl
+  namespace: pashkoostap
 spec:
   replicas: 1
   selector:
@@ -33,6 +34,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ticketing-expiration-redis-depl
+  namespace: pashkoostap
 spec:
   replicas: 1
   selector:
@@ -51,6 +53,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ticketing-expiration-redis-srv
+  namespace: pashkoostap
 spec:
   selector:
     app: ticketing-expiration-redis

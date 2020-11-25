@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ticketing-client-depl
+  namespace: pashkoostap
 spec:
   replicas: 1
   selector:
@@ -20,6 +21,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ticketing-client-srv
+  namespace: pashkoostap
 spec:
   selector:
     app: ticketing-client

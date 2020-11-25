@@ -1,0 +1,87 @@
+# Payments service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-payments-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketing-payments
+  template:
+    metadata:
+      labels:
+        app: ticketing-payments
+    spec:
+      containers:
+        - name: ticketing-payments
+          # image: us.gcr.io/ticketing-dev-id/payments
+          image: pashkoostap/ticketing-payments
+          env:
+            - name: PORT
+              value: '4000'
+            - name: MONGO_URI
+              value: 'mongodb://ticketing-payments-mongo-srv:27017/payments'
+            - name: NATS_URL
+              value: 'http://ticketing-nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: 'ticketing-nats'
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: STRIPE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-secret
+                  key: STRIPE_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketing-payments-srv
+spec:
+  selector:
+    app: ticketing-payments
+  ports:
+    - name: ticketing-payments
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
+# Payments mongo DB
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-payments-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ticketing-payments-mongo
+  template:
+    metadata:
+      labels:
+        app: ticketing-payments-mongo
+    spec:
+      containers:
+        - name: ticketing-payments-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketing-payments-mongo-srv
+spec:
+  selector:
+    app: ticketing-payments-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

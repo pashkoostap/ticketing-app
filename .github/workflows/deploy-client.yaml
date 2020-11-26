@@ -1,0 +1,22 @@
+name: deploy-client
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'client/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd client && docker build -t pashkoostap/ticketing-client .
+      - run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      - run: docker push pashkoostap/ticketing-client
+      # - uses: digitalocean/action-doctl@v2
+      #   with:
+      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      # - run: doctl kubernetes cluster kubeconfig save { cluster_name }
+      # - run: kubectl rollout restart deployment ticketing-client-depl

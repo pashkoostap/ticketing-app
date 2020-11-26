@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ticketing-tickets-depl
-  namespace: pashkoostap
 spec:
   replicas: 1
   selector:
@@ -46,7 +45,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ticketing-tickets-srv
-  namespace: pashkoostap
 spec:
   selector:
     app: ticketing-tickets
@@ -61,7 +59,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ticketing-tickets-mongo-depl
-  namespace: pashkoostap
 spec:
   replicas: 1
   selector:
@@ -87,7 +84,6 @@ apiVersion: v1
 kind: Service
 metadata:
   name: ticketing-tickets-mongo-srv
-  namespace: pashkoostap
 spec:
   selector:
     app: ticketing-tickets-mongo

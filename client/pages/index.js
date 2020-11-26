@@ -2,8 +2,7 @@ import router from 'next/router';
 import Link from 'next/link';
 
 const LandingPage = ({ currentUser, tickets }) => {
-  if (!currentUser)
-    return <h2 className='text-center'>You are not signed in</h2>;
+  if (!currentUser) return <h2 className='text-center'>Please sign in</h2>;
 
   return (
     <div className='col-12'>

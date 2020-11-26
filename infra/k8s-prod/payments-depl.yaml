@@ -18,6 +18,13 @@ spec:
         - name: ticketing-payments
           # image: us.gcr.io/ticketing-dev-id/payments
           image: pashkoostap/ticketing-payments
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
           env:
             - name: PORT
               value: '4000'
@@ -75,6 +82,13 @@ spec:
       containers:
         - name: ticketing-payments-mongo
           image: mongo
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
 ---
 apiVersion: v1
 kind: Service

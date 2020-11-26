@@ -18,6 +18,13 @@ spec:
         - name: ticketing-auth
           # image: us.gcr.io/ticketing-dev-id/auth
           image: pashkoostap/ticketing-auth
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
           env:
             - name: MONGO_URI
               value: 'mongodb://ticketing-auth-mongo-srv:27017/auth'
@@ -59,6 +66,13 @@ spec:
       containers:
         - name: ticketing-auth-mongo
           image: mongo
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
 ---
 apiVersion: v1
 kind: Service

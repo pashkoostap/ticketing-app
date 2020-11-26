@@ -17,6 +17,13 @@ spec:
       containers:
         - name: ticketing-expiration
           image: pashkoostap/ticketing-expiration
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
           env:
             - name: REDIS_HOST
               value: ticketing-expiration-redis-srv
@@ -48,6 +55,13 @@ spec:
       containers:
         - name: ticketing-expiration-redis
           image: redis
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
 ---
 apiVersion: v1
 kind: Service

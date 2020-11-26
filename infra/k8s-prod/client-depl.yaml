@@ -16,6 +16,13 @@ spec:
       containers:
         - name: ticketing-client
           image: pashkoostap/ticketing-client
+          resources:
+            limits:
+              cpu: 100m
+              memory: 250Mi
+            requests:
+              cpu: 10m
+              memory: 125Mi
 ---
 apiVersion: v1
 kind: Service

@@ -5,6 +5,8 @@ import { app } from './app';
 import { listenToEvents } from './nats';
 
 const connectDB = async () => {
+  console.log('Testing payments service');
+
   if (!process.env.PORT) {
     throw new Error('PORT must be defined');
   }

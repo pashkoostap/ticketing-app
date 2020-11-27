@@ -2,6 +2,8 @@ import { nats } from './nats';
 import { listenToEvents } from './nats/listeners';
 
 const start = async () => {
+  console.log('Testing expiration service');
+
   if (!process.env.NATS_URL) {
     throw new Error('NATS_URL must be defined');
   }

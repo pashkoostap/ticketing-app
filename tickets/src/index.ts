@@ -6,7 +6,7 @@ import { app } from './app';
 import { listenToEvents } from './nats/listeners';
 
 const connectDB = async () => {
-  console.log('Testing tickets service workflow');
+  console.log('Testing tickets service');
 
   if (!process.env.JWT_KEY) {
     throw new Error('JWT_KEY must be defined');

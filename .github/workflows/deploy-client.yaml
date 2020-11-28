@@ -17,8 +17,3 @@ jobs:
       - run: docker push pashkoostap/ticketing-client
       - run: docker build -f=Dockerfile.prod -t pashkoostap/ticketing-client-prod .
       - run: docker push pashkoostap/ticketing-client-prod
-      # - uses: digitalocean/action-doctl@v2
-      #   with:
-      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      # - run: doctl kubernetes cluster kubeconfig save { cluster_name }
-      # - run: kubectl rollout restart deployment ticketing-client-depl

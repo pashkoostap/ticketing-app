@@ -1,7 +1,7 @@
 import { Stan } from 'node-nats-streaming';
+
 import { OrderExpiredListener } from './order-expired';
 import { PaymentCreatedListener } from './payment-created';
-
 import { TicketCreatedListener } from './ticket-created';
 import { TicketUpdatedListener } from './ticket-updated';
 

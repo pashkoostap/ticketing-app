@@ -22,6 +22,9 @@ spec:
             requests:
               cpu: 10m
               memory: 125Mi
+        env:
+          - name: BASE_URL
+            value: 'http://ticketing.pashkoostap.cloud.okteto.net'
 ---
 apiVersion: v1
 kind: Service

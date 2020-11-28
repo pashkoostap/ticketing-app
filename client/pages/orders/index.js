@@ -14,18 +14,26 @@ const Orders = ({ orders }) => (
       </thead>
 
       <tbody>
-        {orders.map((order) => (
-          <tr key={order.id}>
-            <td>{order.ticket.title}</td>
-            <td>{order.ticket.price}</td>
-            <td>{order.status}</td>
-            <td>
-              <Link href='/orders/[id]' as={`/orders/${order.id}`}>
-                <a>View</a>
-              </Link>
+        {orders.length ? (
+          orders.map((order) => (
+            <tr key={order.id}>
+              <td>{order.ticket.title}</td>
+              <td>{order.ticket.price}</td>
+              <td>{order.status}</td>
+              <td>
+                <Link href='/orders/[id]' as={`/orders/${order.id}`}>
+                  <a>View</a>
+                </Link>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan='4' className='text-center'>
+              No orders yet
             </td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   </div>

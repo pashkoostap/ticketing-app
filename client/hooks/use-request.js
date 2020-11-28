@@ -20,7 +20,7 @@ const getErrorsContent = (err) => {
   return content;
 };
 
-export default ({ url, method = 'GET', data = {} }) => {
+const useRequest = ({ url, method = 'GET', data = {} }) => {
   const [errors, setErrors] = useState(null);
 
   const request = async (props = {}) => {
@@ -39,3 +39,5 @@ export default ({ url, method = 'GET', data = {} }) => {
 
   return { request, errors };
 };
+
+export default useRequest;

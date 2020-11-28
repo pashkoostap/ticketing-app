@@ -1,6 +1,7 @@
 import {
   OrderCancelledEvent,
   OrderCreatedEvent,
+  OrderExpiredEvent,
   Publisher,
   SubjectType,
   TicketCreatedEvent,
@@ -21,4 +22,8 @@ export class OrderCreatedPublisher extends Publisher<OrderCreatedEvent> {
 
 export class OrderCancelledPublisher extends Publisher<OrderCancelledEvent> {
   subject: SubjectType.OrderCancelled = SubjectType.OrderCancelled;
+}
+
+export class OrderExpiredPublisher extends Publisher<OrderExpiredEvent> {
+  subject: SubjectType.OrderExpired = SubjectType.OrderExpired;
 }

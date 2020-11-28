@@ -1,32 +1,32 @@
-name: deploy-manifests
+# name: deploy-manifests
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'infra/**'
+# on:
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - 'infra/**'
 
-jobs:
-  prod:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@master
+# jobs:
+#   prod:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: checkout
+#         uses: actions/checkout@master
 
-      - uses: okteto/login@master
-        with:
-          token: ${{ secrets.OKTETO_TOKEN }}
+#       - uses: okteto/login@master
+#         with:
+#           token: ${{ secrets.OKTETO_TOKEN }}
 
-      - name: 'Activate personal namespace'
-        uses: okteto/namespace@master
-        with:
-          name: pashkoostap
+#       - name: 'Activate personal namespace'
+#         uses: okteto/namespace@master
+#         with:
+#           name: pashkoostap
 
-      - name: 'Create deployment'
-        uses: okteto/apply@master
-        with:
-          manifest: infra/k8s-prod
+#       - name: 'Create deployment'
+#         uses: okteto/apply@master
+#         with:
+#           manifest: infra/k8s-prod
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest

@@ -56,8 +56,7 @@ const OrderDetail = ({ order, currentUser }) => {
           <tr>
             <th>Ticket</th>
             <th>Price</th>
-            <th>Status</th>
-            {status !== 'completed' ? <th>Expires in</th> : null}
+            {status === 'completed' ? <th>Status</th> : <th>Expires in</th>}
           </tr>
         </thead>
 

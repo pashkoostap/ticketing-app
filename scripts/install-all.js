@@ -19,6 +19,5 @@ series([
   task('tickets'),
   task('auth'),
   task('client'),
-  taks('expiration'),
   task('payments'),
 ]);

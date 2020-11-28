@@ -59,6 +59,7 @@ const connectDB = async () => {
       console.log(`orders/0.0.1:${process.env.PORT}`);
     });
   } catch (err) {
+    console.trace(err);
     console.error(err);
   }
 };

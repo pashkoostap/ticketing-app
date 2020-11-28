@@ -9,7 +9,7 @@ import {
 } from '@pashkoostap-learning/ticketing-common';
 
 import { Order, Ticket } from '../models';
-import { OrderCreatedPublisher, nats } from '../nats';
+import { OrderCreatedPublisher, nats, OrderExpiredPublisher } from '../nats';
 
 const router = Router();
 
@@ -59,6 +59,17 @@ router.post(
         title: ticket.title,
       },
     });
+
+    const delay = new Date(expiresAt.toISOString()).getTime() - Date.now();
+
+    // HOTFIX
+    setTimeout(() => {
+      const publisher = new OrderExpiredPublisher(nats.client);
+
+      publisher.publish({
+        id: order._id,
+      });
+    }, delay);
 
     res.status(201).send(order);
   }

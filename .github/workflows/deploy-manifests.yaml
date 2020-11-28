@@ -1,12 +1,12 @@
-# name: deploy-manifests
+name: deploy-manifests
 
-# on:
-#   push:
-#     branches:
-#       - master
-#     paths:
-#       - 'infra/**'
-
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'infra/**'
+# Okteto cloud
 # jobs:
 #   prod:
 #     runs-on: ubuntu-latest
@@ -27,6 +27,8 @@
 #         uses: okteto/apply@master
 #         with:
 #           manifest: infra/k8s-prod
+
+# Digital ocean
 # jobs:
 #   build:
 #     runs-on: ubuntu-latest

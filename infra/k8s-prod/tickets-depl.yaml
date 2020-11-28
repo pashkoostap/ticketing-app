@@ -19,8 +19,8 @@ spec:
           image: pashkoostap/ticketing-tickets
           resources:
             limits:
-              cpu: 300m
-              memory: 650Mi
+              cpu: 350m
+              memory: 700Mi
             requests:
               cpu: 10m
               memory: 125Mi
@@ -74,8 +74,8 @@ spec:
           image: mongo
           resources:
             limits:
-              cpu: 300m
-              memory: 650Mi
+              cpu: 350m
+              memory: 700Mi
             requests:
               cpu: 10m
               memory: 125Mi

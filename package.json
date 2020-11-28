@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "update-common": "node ./scripts/update-common-library.js",
-    "install-all": "node ./scripts/install-all.js"
+    "install-all": "node ./scripts/install-all.js",
+    "deploy-prod": "node ./scripts/deploy-prod.js"
   },
   "repository": {
     "type": "git",

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: ticketing-client
-          image: pashkoostap/ticketing-client
+          image: pashkoostap/ticketing-client-prod
           resources:
             limits:
               cpu: 350m

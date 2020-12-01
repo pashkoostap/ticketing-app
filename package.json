@@ -6,7 +6,8 @@
   "scripts": {
     "update-common": "node ./scripts/update-common-library.js",
     "install-all": "node ./scripts/install-all.js",
-    "deploy-prod": "node ./scripts/deploy-prod.js"
+    "run:dev": "kubectl config use-context docker-desktop && skaffold dev",
+    "deploy:prod": "node ./scripts/deploy-prod.js"
   },
   "repository": {
     "type": "git",

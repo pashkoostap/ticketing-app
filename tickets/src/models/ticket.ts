@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import mongoose from 'mongoose';
 import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 

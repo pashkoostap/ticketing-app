@@ -1,4 +1,5 @@
 node_modules
 /client/.next/
 infra/k8s-dev/secrets.txt
+infra/k8s-prod/secrets.txt
 .DS_Store

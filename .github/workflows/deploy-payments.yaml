@@ -15,8 +15,3 @@ jobs:
       - run: cd payments && docker build -t pashkoostap/ticketing-payments .
       - run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       - run: docker push pashkoostap/ticketing-payments
-      # - uses: digitalocean/action-doctl@v2
-      #   with:
-      #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      # - run: doctl kubernetes cluster kubeconfig save { cluster_name }
-      # - run: kubectl rollout restart deployment ticketing-payments-depl

@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import mongoose from 'mongoose';
 import { OrderStatus } from '@pashkoostap-learning/ticketing-common';
 

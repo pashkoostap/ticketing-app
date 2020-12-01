@@ -47,7 +47,7 @@ router.post(
 
     const publisher = new PaymentCreatedPublisher(nats.client);
     publisher.publish({
-      id: payment._id,
+      id: (payment as any)._id,
       orderId: payment.orderId,
       stripeId: payment.stripeId,
     });

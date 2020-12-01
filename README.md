@@ -1,5 +1,6 @@
-# Application created during the course: 
-# https://www.udemy.com/course/microservices-with-node-js-and-react/
+# Demo: http://ticketing.pashkoostap.cloud.okteto.net/
+
+# Course link: https://www.udemy.com/course/microservices-with-node-js-and-react/
 
 # Used technologies
 - Kuberenetes
@@ -12,3 +13,4 @@
 - React
 - Jest
 - GitHub actions
+- Okteto cloud

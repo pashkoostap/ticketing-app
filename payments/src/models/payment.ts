@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import mongoose, { Document, Model, Schema } from 'mongoose';
 
 interface PaymentAttrs {

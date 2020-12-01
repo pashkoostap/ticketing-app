@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "update-common": "node ./scripts/update-common-library.js",
-    "install-all": "node ./scripts/install-all.js",
-    "run:dev": "kubectl config use-context docker-desktop && skaffold dev",
+    "install:all": "node ./scripts/install-all.js",
+    "install:common": "node ./scripts/install-common.js",
+    "dev": "kubectl config use-context docker-desktop && skaffold dev",
     "deploy:prod": "node ./scripts/deploy-prod.js"
   },
   "repository": {

@@ -67,7 +67,7 @@ router.post(
       const publisher = new OrderExpiredPublisher(nats.client);
 
       publisher.publish({
-        id: order._id,
+        id: (order as any)._id,
       });
     }, delay);
 

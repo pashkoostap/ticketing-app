@@ -31,7 +31,7 @@ export class OrderExpiredListener extends Listener<OrderExpiredEvent> {
       id: order.id,
       version: order.version,
       ticket: {
-        id: order.ticket._id,
+        id: (order.ticket as any)._id,
       },
     });
 

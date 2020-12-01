@@ -20,4 +20,5 @@ series([
   task('auth'),
   task('client'),
   task('payments'),
+  task('expiration'),
 ]);

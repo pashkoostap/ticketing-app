@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-import { nats } from './nats';
-
 import { app } from './app';
+import { nats } from './nats';
+import { ping } from './utils';
 import { listenToEvents } from './nats/listeners';
 
 const connectDB = async () => {
@@ -26,6 +26,10 @@ const connectDB = async () => {
 
   if (!process.env.NATS_CLIENT_ID) {
     throw new Error('NATS_CLIENT_ID must be defined');
+  }
+
+  if (process.env.APP_HOST) {
+    ping(process.env.APP_HOST, 60 * 60 * 1000);
   }
 
   try {

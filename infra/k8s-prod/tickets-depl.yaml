@@ -41,7 +41,7 @@ spec:
                   name: jwt-secret
                   key: JWT_KEY
             - name: APP_HOST
-              value: 'ticketing.pashkoostap.cloud.okteto.net'
+              value: 'http://ticketing.pashkoostap.cloud.okteto.net'
 ---
 apiVersion: v1
 kind: Service
